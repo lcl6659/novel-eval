@@ -1,0 +1,247 @@
+/* ===== Global Reset & Base Styles ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans SC', sans-serif;
+  background-color: #ffffff;
+  color: #1a1a2e;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Design Tokens ===== */
+:root {
+  --color-primary: #1a1a2e;
+  --color-primary-light: #16213e;
+  --color-gold: #d4a853;
+  --color-gold-hover: #c49a48;
+  --color-bg-light: #f0f2f5;
+  --color-success: #52c41a;
+  --color-warning: #fa8c16;
+  --color-info: #1677ff;
+  --color-error: #ff4d4f;
+  --card-radius: 12px;
+  --btn-radius: 8px;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --card-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.1);
+  --max-width: 1200px;
+}
+
+/* ===== Utility Classes ===== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 0;
+  }
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideInFromBottom 0.4s ease-out forwards;
+}
+
+.animate-pulse-soft {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ===== Particle Background (CSS only) ===== */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-particles::before,
+.hero-particles::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(212, 168, 83, 0.3);
+  border-radius: 50%;
+  animation: floatParticle 8s ease-in-out infinite;
+}
+
+.hero-particles::before {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.hero-particles::after {
+  top: 60%;
+  right: 20%;
+  animation-delay: 4s;
+  width: 6px;
+  height: 6px;
+  background: rgba(212, 168, 83, 0.2);
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(30px, -40px) scale(1.5);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-20px, -80px) scale(1);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(40px, -40px) scale(1.2);
+    opacity: 0.5;
+  }
+}
+
+/* ===== Card Hover Effect ===== */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* ===== Gold Button ===== */
+.gold-btn {
+  background: var(--color-gold) !important;
+  border-color: var(--color-gold) !important;
+  color: #1a1a2e !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.gold-btn:hover {
+  background: var(--color-gold-hover) !important;
+  border-color: var(--color-gold-hover) !important;
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(212, 168, 83, 0.4) !important;
+}
+
+/* ===== Reader Cards Scroll ===== */
+.reader-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.reader-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.reader-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ===== Progress Page Reader Feed ===== */
+.reader-feed-item {
+  animation: slideInFromBottom 0.4s ease-out forwards;
+}
+
+/* ===== Ant Design Overrides ===== */
+.ant-card {
+  border-radius: var(--card-radius) !important;
+}
+
+/* ===== Responsive Helpers ===== */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
