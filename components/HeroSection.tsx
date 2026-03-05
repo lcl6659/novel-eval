@@ -15,38 +15,29 @@ export default function HeroSection() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+        backgroundImage: 'url(/hero-bg.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         overflow: 'hidden',
         padding: '80px 24px 60px',
       }}
     >
-      {/* Particle background */}
-      <div className="hero-particles" />
-
-      {/* Extra floating particles */}
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          style={{
-            position: 'absolute',
-            width: i % 2 === 0 ? 3 : 5,
-            height: i % 2 === 0 ? 3 : 5,
-            background: `rgba(212, 168, 83, ${0.15 + (i * 0.05)})`,
-            borderRadius: '50%',
-            top: `${15 + i * 13}%`,
-            left: `${10 + i * 15}%`,
-            animation: `floatParticle ${6 + i * 2}s ease-in-out infinite`,
-            animationDelay: `${i * 1.5}s`,
-            pointerEvents: 'none',
-          }}
-        />
-      ))}
+      {/* Subtle overlay for text contrast */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(255, 255, 255, 0.15)',
+          pointerEvents: 'none',
+        }}
+      />
 
       <div style={{ textAlign: 'center', maxWidth: 720, position: 'relative', zIndex: 1 }}>
         {/* Title */}
         <h1
           style={{
-            color: '#ffffff',
+            color: '#1a1a2e',
             fontSize: 'clamp(28px, 5vw, 42px)',
             fontWeight: 700,
             lineHeight: 1.3,
@@ -60,7 +51,7 @@ export default function HeroSection() {
         {/* Subtitle */}
         <p
           style={{
-            color: 'rgba(255,255,255,0.8)',
+            color: 'rgba(26, 26, 46, 0.7)',
             fontSize: 'clamp(15px, 2.5vw, 18px)',
             lineHeight: 1.7,
             marginBottom: 40,
@@ -101,8 +92,8 @@ export default function HeroSection() {
               paddingInline: 24,
               borderRadius: 24,
               fontSize: 16,
-              borderColor: 'rgba(255,255,255,0.6)',
-              color: 'rgba(255,255,255,0.9)',
+              borderColor: 'rgba(26, 26, 46, 0.3)',
+              color: '#1a1a2e',
             }}
           >
             了解更多
@@ -117,13 +108,13 @@ export default function HeroSection() {
             justifyContent: 'center',
             gap: 32,
             flexWrap: 'wrap',
-            color: 'rgba(255,255,255,0.6)',
+            color: 'rgba(26, 26, 46, 0.5)',
             fontSize: 15,
           }}
         >
           <span>
             已有{' '}
-            <span style={{ color: '#d4a853', fontWeight: 600 }}>
+            <span style={{ color: '#b8860b', fontWeight: 600 }}>
               <CountUp end={12580} duration={2.5} separator="," />
             </span>{' '}
             篇开篇完成测评
@@ -131,7 +122,7 @@ export default function HeroSection() {
           <span style={{ opacity: 0.4 }}>{'·'}</span>
           <span>
             平均提升留存率{' '}
-            <span style={{ color: '#d4a853', fontWeight: 600 }}>
+            <span style={{ color: '#b8860b', fontWeight: 600 }}>
               <CountUp end={23} duration={2} suffix="%" />
             </span>
           </span>
